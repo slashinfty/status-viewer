@@ -1,0 +1,69 @@
+<!doctype HTML>
+<html lang="us">
+  <head>
+    <meta charset="utf-8">
+    <title>Status Viewer</title>
+    <meta name="author" content="Matt Braddock">
+    
+    <link href="index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@600&display=swap" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="jquery.textFit.min.js"></script>
+    <script src="details.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container" id="left">
+        <div id="time-date">
+          <div id="clock"></div>
+          <div id="today"></div>
+        </div>
+        <div id="current">
+          <div id="temp">
+            <div id="actual"></div>
+            <div id="feels"></div>
+          </div>
+          <div id="describe" class="horiz-end"></div>
+        </div>
+        <div class="forecast">
+          <div id="day-1" class="day">
+            <div id="day-1-date" class="date"></div>
+            <div id="day-1-1" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-1-2" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-1-3" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+          </div>
+          <div id="day-2" class="day">
+            <div id="day-2-date" class="date"></div>
+            <div id="day-2-1" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-2-2" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-2-3" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+          </div>
+          <div id="day-3" class="day">
+            <div id="day-3-date" class="date"></div>
+            <div id="day-3-1" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-3-2" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-3-3" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+          </div>
+          <div id="day-4" class="day">
+            <div id="day-4-date" class="date"></div>
+            <div id="day-4-1" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-4-2" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-4-3" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+          </div>
+          <div id="day-5" class="day">
+            <div id="day-5-date" class="date"></div>
+            <div id="day-5-1" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-5-2" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+            <div id="day-5-3" class="incr"><div class="daily-temp"></div><div class="daily-icon"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <!-- calendar -->
+      </div>
+    </div>
+    <div id="clock"></div>
+    <div id="weather"></div>
+  </body>
