@@ -1,9 +1,10 @@
 var OWMID, OWMAPI, GCALID, GCALAPI;
+var CALENDAR = 'primary';
 
 $(document).ready(() => {
   clock();
-  currentWeather();
-  forecastWeather();
+  //currentWeather();
+  //forecastWeather();
 });
 
 function clock() {
@@ -16,12 +17,11 @@ function clock() {
   $("#clock").html(h + ':' + m + ':' + s + ampm).textFit({reProcess: true, widthOnly: true, maxFontSize: 400});
   let date = today.toString().replace(/\s\d\d:.*$/,'');
   $("#today").text(date).textFit({reProcess: true, widthOnly: true, maxFontSize: 400});
+  $("#day-labels").textFit({reProcess: true, alignHoriz: true});
   let t = setTimeout(clock, 500); //0.5 seconds
 }
 
 async function currentWeather() {
-  //temporary start
-  //temporary end
   let direction = deg => {
     if (deg <= 22 || deg > 337) return 'N';
     else if (deg <= 67) return 'NE';
@@ -48,8 +48,6 @@ async function currentWeather() {
 }
 
 async function forecastWeather() {
-  //temporary start
-  //temporary end
   let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?id=${OWMID}&units=imperial&appid=${OWMAPI}`);
   let body = await response.json();
   let eightAm = [];

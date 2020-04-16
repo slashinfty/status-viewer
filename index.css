@@ -124,3 +124,28 @@ body {
 #day-5 {
   color: #ED5564;
 }
+
+#month-year {
+  height: 13%;
+  width: 100%;
+  text-align: center;
+  color: #4FC1E8;
+}
+
+#day-labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 9%;
+  width: 100%;
+  color: #A0D568;
+}
+
+.day-name {
+  height: 100%;
+  width: 14%;
+}
+
+.week-day {
+  height: 13%;
+}
