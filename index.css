@@ -19,28 +19,17 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 50%;
   height: 100%;
   margin-left: 0.5%;
   margin-right: 0.5%;
 }
 
-#time-date {
+#clock {
   width: 100%;
   height: 40%;
   color: #FFCE54;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#clock {
-  width: 100%;
-}
-
-#today {
-  width: 40%;
-  white-space: nowrap !important;
 }
 
 #current {
@@ -72,7 +61,7 @@ body {
   white-space: nowrap !important;
 }
 
-.forecast {
+#forecast {
   display: flex;
   flex-direction: row;
 }
@@ -138,7 +127,11 @@ body {
   justify-content: space-between;
   height: 9%;
   width: 100%;
-  color: #A0D568;
+  color: #4FC1E8;
+}
+
+#day-labels .textfitted {
+  display: contents;
 }
 
 .day-name {
@@ -146,6 +139,24 @@ body {
   width: 14%;
 }
 
-.week-day {
+.week {
   height: 13%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.week-day {
+  height: 100%;
+  width: 14%;
+}
+
+.not-today {
+  color: #A0D568;
+}
+
+.today {
+  color: #ED5564;
+  border: 2px solid #ED5564;
 }
