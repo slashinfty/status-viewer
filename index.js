@@ -12,6 +12,7 @@ function urlCheck() {
   } else {
     ZIP = prompt("Please enter ZIP code.");
     OWMAPI = prompt("Please enter OpenWeatherMap API key.");
+    if (OWMAPI === null || OWMAPI === '') alert("You can get an API key here: https://openweathermap.org/appid");
   }
   clock();
   currentWeather();
