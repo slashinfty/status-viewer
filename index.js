@@ -15,10 +15,10 @@ function urlCheck() {
     if (OWMAPI === null || OWMAPI === '') alert("You can get an API key here: https://openweathermap.org/appid");
   }
   clock();
+  calendar();
   currentWeather();
   forecastWeather();
-  calendar();
-}
+  }
 
 function clock() {
   let today = new Date();
