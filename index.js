@@ -96,73 +96,7 @@ async function forecastWeather() {
   }
   let t = setTimeout(forecastWeather, 3600000); //1 hour
 }
-/*
-async function forecastWeather() {
-  let response, body;
-  try {
-    response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=${ZIP},us&units=imperial&appid=${OWMAPI}`);
-    body = await response.json();
-  } catch (err) {
-    console.log(err);
-    $("#forecast").html("Error fetching weather data.");
-  }
-  let eightAm = [];
-  let twoPm = [];
-  let eightPm = [];
-  let first;
-  body.list.forEach((time, i) => {
-    if (time.dt_txt.endsWith("12:00:00")) {
-      eightAm.push(time);
-      if (i === 0) first = 1;
-    } else if (time.dt_txt.endsWith("18:00:00")) {
-      twoPm.push(time);
-      if (i === 0) first = 2;
-    } else if (time.dt_txt.endsWith("00:00:00")) {
-      eightPm.push(time);
-      if (i === 0) first = 3;
-    }
-  });
-  let adjust = 0;
-  eightAm.forEach((day, i) => {
-    if (first > 0) {
-      eightAm.pop();
-      first = 0;
-      adjust = 1;
-    }
-    let dayCount = (i + 1 + adjust).toString();
-    $("#day-" + dayCount + "-1").find(".daily-temp").html("8AM<br>" + day.main.temp.toString() + '\xB0' + 'F').textFit({reProcess: true, widthOnly: true, maxFontSize: 23});
-    $("#day-" + dayCount + "-1").find(".daily-icon").html('<img class="daily-icon" src="http://openweathermap.org/img/wn/' + day.weather[0].icon + '@2x.png">');
-  });
-  adjust = 0;
-  twoPm.forEach((day, i) => {
-    if (first > 1) {
-      twoPm.pop();
-      first = 0;
-      adjust = 1;
-    }
-    let dayCount = (i + 1 + adjust).toString();
-    $("#day-" + dayCount + "-2").find(".daily-temp").html("2PM<br>" + day.main.temp.toString() + '\xB0' + 'F').textFit({reProcess: true, widthOnly: true, maxFontSize: 23});
-    $("#day-" + dayCount + "-2").find(".daily-icon").html('<img class="daily-icon" src="http://openweathermap.org/img/wn/' + day.weather[0].icon + '@2x.png">');
-  });
-  let dayLetter = dayNumber => {
-    switch (dayNumber) {
-      case 1: return 'M';
-      case 2: case 4: return 'T';
-      case 3: return 'W';
-      case 5: return 'F';
-      case 6: case 0: return 'S';
-    }
-  }
-  eightPm.forEach((day, i) => {
-    let date = new Date(day.dt * 1000);
-    let dayCount = (i + 1).toString();
-    $("#day-" + dayCount + "-date").html(dayLetter(date.getDay()) + ' ' + (date.getMonth() + 1).toString() + '/' + date.getDate().toString()).textFit({reProcess: true, widthOnly: true, maxFontSize: 23});
-    $("#day-" + dayCount + "-3").find(".daily-temp").html("8PM<br>" + day.main.temp.toString() + '\xB0' + 'F').textFit({reProcess: true, widthOnly: true, maxFontSize: 23});
-    $("#day-" + dayCount + "-3").find(".daily-icon").html('<img class="daily-icon" src="http://openweathermap.org/img/wn/' + day.weather[0].icon + '@2x.png">');
-  });
-  let t = setTimeout(forecastWeather, 3600000); //1 hour
-}
-*/
+
 function calendar() {
   $("#day-labels").find(".day-name").textFit({reProcess: true, alignHoriz: true, alignVert: true});
   let date = new Date();

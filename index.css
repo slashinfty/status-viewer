@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'fira';
+  src: url("FiraCode-SemiBold.ttf") format("truetype");
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,7 +10,7 @@
 }
 
 body {
-  font-family: 'Fira Code', monospace;
+  font-family: 'fira', monospace;
   background-color: #121212;
 }
 
