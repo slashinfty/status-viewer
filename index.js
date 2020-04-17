@@ -1,4 +1,4 @@
-var ZIP, OWMAPI;
+var ZIP, OWMAPI, LAT, LONG;
 
 $(document).ready(() => {
   urlCheck();
@@ -10,10 +10,15 @@ function urlCheck() {
     ZIP = url.searchParams.get('zip');
     OWMAPI = url.searchParams.get('owmapi');
   } else {
-    ZIP = prompt("Please enter ZIP code.");
+    do {
+      ZIP = prompt("Please enter ZIP code.");
+    } while (ZIP === null || ZIP === '');
     OWMAPI = prompt("Please enter OpenWeatherMap API key.");
     if (OWMAPI === null || OWMAPI === '') alert("You can get an API key here: https://openweathermap.org/appid");
   }
+  let userCity = zipCoordinates.find(city => city.fields.zip === ZIP);
+  LAT = userCity.fields.latitude;
+  LONG = userCity.fields.longitude;
   clock();
   calendar();
   currentWeather();
@@ -66,11 +71,40 @@ async function currentWeather() {
 async function forecastWeather() {
   let response, body;
   try {
+    response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=${LAT}&lon=${LONG}&appid=${OWMAPI}`);
+    body = await response.json();
+  } catch (err) {
+    console.log(err);
+    $("#forecast").html("Error fetching weather data.");
+  }
+  let dayLetter = dayNumber => {
+    switch (dayNumber) {
+      case 1: return 'M';
+      case 2: case 4: return 'T';
+      case 3: return 'W';
+      case 5: return 'F';
+      case 6: case 0: return 'S';
+    }
+  }
+  for (let i = 1; i <= 5; i++) {
+    let day = body.daily[i - 1];
+    let date = new Date(day.dt * 1000);
+    let dayCount = (i).toString();
+    $("#day-" + dayCount + "-date").html(dayLetter(date.getDay()) + ' ' + (date.getMonth() + 1).toString() + '/' + date.getDate().toString()).textFit({reProcess: true, widthOnly: true, maxFontSize: 23});
+    $("#day-" + (i).toString() + "-1").html('HI: ' + day.temp.max.toString() + '<br>LO: ' + day.temp.min.toString() + '<br><img src="http://openweathermap.org/img/wn/' + day.weather[0].icon + '@2x.png">').textFit({reProcess: true, alignHoriz: true, alignVert: true});
+    $("#day-" + (i).toString() + "-2").html(day.weather[0].description[0].toUpperCase() + day.weather[0].description.slice(1)).textFit({reProcess: true, alignHoriz: true, alignVert: true, maxFontSize: 36});
+  }
+  let t = setTimeout(forecastWeather, 3600000); //1 hour
+}
+/*
+async function forecastWeather() {
+  let response, body;
+  try {
     response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=${ZIP},us&units=imperial&appid=${OWMAPI}`);
     body = await response.json();
   } catch (err) {
     console.log(err);
-    $("#forecast").html("Error fetching weather data.")
+    $("#forecast").html("Error fetching weather data.");
   }
   let eightAm = [];
   let twoPm = [];
@@ -128,7 +162,7 @@ async function forecastWeather() {
   });
   let t = setTimeout(forecastWeather, 3600000); //1 hour
 }
-
+*/
 function calendar() {
   $("#day-labels").find(".day-name").textFit({reProcess: true, alignHoriz: true, alignVert: true});
   let date = new Date();
