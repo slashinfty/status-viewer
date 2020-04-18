@@ -1,5 +1,7 @@
 # status-viewer
 
+Simple clock, weather, and calendar display, primarily for fullscreen viewability. Current weather updates every 15 minutes, while daily forecast updates every hour.
+
 You need two things for this to work:
 
 * A ZIP code
