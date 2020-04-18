@@ -1,4 +1,4 @@
-var ZIP, OWMAPI, LAT, LONG;
+var ZIP, OWMAPI, LAT, LONG, whatIsToday;
 
 $(document).ready(() => {
   urlCheck();
@@ -19,6 +19,7 @@ function urlCheck() {
   let userCity = zipCoordinates.find(city => city.fields.zip === ZIP);
   LAT = userCity.fields.latitude;
   LONG = userCity.fields.longitude;
+  whatIsToday = new Date().getDate();
   clock();
   calendar();
   currentWeather();
@@ -33,6 +34,10 @@ function clock() {
   let m = today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
   let s = today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds();
   $("#clock").html(h + ':' + m + ':' + s + ampm).textFit({reProcess: true, widthOnly: true, alignVert: true, maxFontSize: 400});
+  if (today.getDate() !== whatIsToday) {
+    whatIsToday = today.getDate();
+    calendar();
+  }
   let t = setTimeout(clock, 500); //0.5 seconds
 }
 
@@ -139,5 +144,4 @@ function calendar() {
   $('#cal-' + todayPlace.toString()).removeClass("not-today").addClass("today");
   if (lastDay < 36) $("#week-6").css("height", "0%");
   else $("#week-6").css("height", "13%");
-  let t = setTimeout(forecastWeather, 3600000); //1 hour
 }
